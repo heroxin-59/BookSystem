@@ -16,5 +16,6 @@ import java.util.List;
 
 public interface ICategoryService {
     public PageInfo<Categories> selectCategory(Integer page, Integer count);
+    PageInfo<Article> selectArtByCat(Integer page,Integer count,String content);
 
 }

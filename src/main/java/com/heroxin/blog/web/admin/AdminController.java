@@ -37,6 +37,8 @@ public class AdminController {
     private ICategoryService categoryServiceImpl;
     @Autowired
     private ITagsService iTagsServiceImpl;
+    @Autowired
+    private IUserService userService;
 
     // 管理中心起始页
     @GetMapping(value = {"", "/index"})
@@ -96,16 +98,52 @@ public class AdminController {
         return "back/comment_list";
     }
 
-    // 跳转到分类/标签页面
+    // 跳转到分类页面
     @GetMapping(value = "/category")
     public String category(@RequestParam(value = "page", defaultValue = "1") int page,
                           @RequestParam(value = "count", defaultValue = "10") int count,
                           HttpServletRequest request) {
         PageInfo<Categories> categories = categoryServiceImpl.selectCategory(page, count);
-        PageInfo<Tags> tags = iTagsServiceImpl.selectTags(page, count);
         request.setAttribute("category", categories);
-        request.setAttribute("tags", tags);
         return "back/category_list";
+    }
+    // 跳转到标签页面
+    @GetMapping(value = "/tag")
+    public String tag(@RequestParam(value = "page", defaultValue = "1") int page,
+                          @RequestParam(value = "count", defaultValue = "10") int count,
+                          HttpServletRequest request) {
+        PageInfo<Tags> tags = iTagsServiceImpl.selectTags(page, count);
+        request.setAttribute("tag", tags);
+        return "back/tag_list";
+    }
+    // 跳转到标签-文章页面
+    @GetMapping(value = "/tag/art/{content}")
+    public String tagArt(@RequestParam(value = "page", defaultValue = "1") int page,
+                          @RequestParam(value = "count", defaultValue = "10") int count,
+                          @PathVariable String content,
+                          HttpServletRequest request) {
+        PageInfo<Article> articlePageInfo = iTagsServiceImpl.selectArtByTags(page, count, content);
+        request.setAttribute("artTag", articlePageInfo);
+        return "back/tag_art_list";
+    }
+    // 跳转到分类-文章页面
+    @GetMapping(value = "/category/art/{content}")
+    public String catArt(@RequestParam(value = "page", defaultValue = "1") int page,
+                          @RequestParam(value = "count", defaultValue = "10") int count,
+                          @PathVariable String content,
+                          HttpServletRequest request) {
+        PageInfo<Article> artByCat = categoryServiceImpl.selectArtByCat(page, count, content);
+        request.setAttribute("catTag", artByCat);
+        return "back/category_art_list";
+    }
+    // 跳转到用户列表页面
+    @GetMapping(value = "/userList")
+    public String userController(@RequestParam(value = "page", defaultValue = "1") int page,
+                          @RequestParam(value = "count", defaultValue = "10") int count,
+                          HttpServletRequest request) {
+        PageInfo<User> userPageInfo = userService.selectUser(page, count);
+        request.setAttribute("user", userPageInfo);
+        return "back/user_list";
     }
 
     // 向文章修改页面跳转

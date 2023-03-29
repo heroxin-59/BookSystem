@@ -1,6 +1,7 @@
 package com.heroxin.blog;
 
 import com.github.pagehelper.PageInfo;
+import com.heroxin.blog.model.domain.Article;
 import com.heroxin.blog.model.domain.Tags;
 import com.heroxin.blog.service.ICategoryService;
 import com.heroxin.blog.service.ITagsService;
@@ -33,6 +34,16 @@ class HeroxinBlogSystemApplicationTests {
     public void testTags(){
         PageInfo<Tags> tags = iTagsServiceImpl.selectTags(1, 10);
         System.out.println(tags);
+    }
+    @Test
+    public void testArtByTags(){
+        PageInfo<Article> docker = iTagsServiceImpl.selectArtByTags(1, 10, "Docker");
+        System.out.println(docker);
+    }
+    @Test
+    public void testArtByCat(){
+        PageInfo<Article> artByCat = categoryServiceImpl.selectArtByCat(1, 10, "笔记");
+        System.out.println(artByCat);
     }
 
 

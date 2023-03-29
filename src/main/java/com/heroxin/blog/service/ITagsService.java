@@ -9,12 +9,14 @@ package com.heroxin.blog.service;
 */
 
 import com.github.pagehelper.PageInfo;
+import com.heroxin.blog.model.domain.Article;
 import com.heroxin.blog.model.domain.Tags;
 
 import java.util.List;
 
 public interface ITagsService {
 
-    public PageInfo<Tags> selectTags(Integer page,Integer count);
+    PageInfo<Tags> selectTags(Integer page,Integer count);
+    PageInfo<Article> selectArtByTags(Integer page,Integer count,String content);
 
 }

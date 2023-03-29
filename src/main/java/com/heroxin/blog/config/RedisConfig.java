@@ -27,6 +27,7 @@ public class RedisConfig extends CachingConfigurerSupport {
      *  定制Redis API模板RedisTemplate
      * @param redisConnectionFactory
      * @return
+     * sdfsd
      */
     @Bean
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {

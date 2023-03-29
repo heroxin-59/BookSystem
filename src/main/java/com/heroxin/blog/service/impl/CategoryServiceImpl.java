@@ -36,4 +36,12 @@ public class CategoryServiceImpl implements ICategoryService {
         return pageInfo;
     }
 
+    @Override
+    public PageInfo<Article> selectArtByCat(Integer page, Integer count, String content) {
+        PageHelper.startPage(page,count);
+        List<Article> articles = categoryMapper.selectArtByCat(content);
+        PageInfo<Article> articlePageInfo = new PageInfo<>(articles);
+        return articlePageInfo;
+    }
+
 }

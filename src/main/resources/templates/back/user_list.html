@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='分类列表',active='category'">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='用户列表',active='user'">
 <header th:replace="back/header::headerFragment(${title},${active})"></header>
 <head>
     <meta th:name="_csrf" th:content="${_csrf.token}"/>
@@ -14,31 +14,39 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h4 class="page-title">分类列表</h4>
+                        <h4 class="page-title">用户列表</h4>
                     </div>
                     <div class="col-md-12">
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-<!--                                <th width="25%">分类</th>-->
-                                <th width="15%">分类</th>
-<!--                                <th>浏览量</th>-->
-<!--                                <th>所属分类</th>-->
-<!--                                <th>操作</th>-->
+                                <th width="35%">用户名</th>
+                                <th width="15%">email</th>
+                                <th>创建时间</th>
+                                <th>状态</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <th:block th:each="category : ${category.list}">
-                                <tr th:id="${category.id}">
+                            <th:block th:each="user : ${user.list}">
+                                <tr th:id="${user.id}">
                                     <td>
-                                        <a th:href="@{'/admin/category/art/'+${category.content}}" th:text="${category.content}" target="_self"></a>
+                                        <th:block th:text="${user.username}"/>
+                                    </td>
+                                    <td>
+                                        <th:block th:text="${user.email}"/>
+                                    </td>
+                                    <td>
+                                        <th:block th:text="${user.created}"/>
+                                    </td>
+                                    <td>
+                                        <th:block th:text="${user.valid} == 1?'正常':'失效'"/>
                                     </td>
                                 </tr>
                             </th:block>
 
                             </tbody>
                         </table>
-                        <div th:replace="comm/paging :: pageAdminNav(${category})"></div>
+                        <div th:replace="comm/paging :: pageAdminNav(${user})"></div>
                     </div>
                 </div>
                 <div th:replace="back/footer :: footer-content"></div>
@@ -47,5 +55,6 @@
     </div>
 </div>
 <div th:replace="back/footer :: footer"></div>
+
 </body>
 </html>

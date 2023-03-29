@@ -11,6 +11,7 @@ package com.heroxin.blog.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.heroxin.blog.dao.TagsMapper;
+import com.heroxin.blog.model.domain.Article;
 import com.heroxin.blog.model.domain.Tags;
 import com.heroxin.blog.service.ITagsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,14 @@ public class TagsServiceImpl implements ITagsService {
         PageInfo<Tags> tagsPageInfo = new PageInfo<>(tags);
         return tagsPageInfo;
     }
+
+    @Override
+    public PageInfo<Article> selectArtByTags(Integer page, Integer count, String content) {
+        PageHelper.startPage(page,count);
+        List<Article> articles = tagsMapper.selectArtByTags(content);
+        PageInfo<Article> pageInfo = new PageInfo<>(articles);
+        return pageInfo;
+    }
+
+
 }

@@ -23,7 +23,7 @@
                                 <th width="35%">文章标题</th>
                                 <th width="15%">发布时间</th>
                                 <th>浏览量</th>
-                                <th>所属分类</th>
+<!--                                <th>所属分类</th>-->
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -31,11 +31,11 @@
                             <th:block th:each="article : ${articles.list}">
                                 <tr th:id="${article.id}">
                                     <td>
-                                        <a th:href="@{'/article/'+${article.id}}" th:text="${article.title}" target="_blank"></a>
+                                        <a th:href="@{'/article/'+${article.id}}" th:text="${article.title}" target="_self"></a>
                                     </td>
                                     <td><th:block th:text="${commons.dateFormat(article.created)}"/></td>
                                     <td><th:block th:text="${article.hits}"/></td>
-                                    <td><th:block th:text="${article.categories}"/></td>
+<!--                                    <td><th:block th:text="${article.categories}"/></td>-->
                                     <td>
                                         <a th:href="@{'/admin/article/'+${article.id}}"
                                            class="btn btn-primary btn-sm waves-effect waves-light m-b-5">

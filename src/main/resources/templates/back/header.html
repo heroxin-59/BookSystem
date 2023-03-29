@@ -11,7 +11,6 @@
     <link th:href="@{/back/css/font-awesome.min.css}" rel="stylesheet"/>
     <link th:href="@{/back/css/style.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/back/css/sweetalert2.min.css}" rel="stylesheet"/>
-
     <script th:src="@{/back/js/html5shiv.js}"></script>
     <script th:src="@{/back/js/respond.min.js}"></script>
 </head>
@@ -83,21 +82,37 @@
                             <i class="fa fa-comments" aria-hidden="true"></i><span> 评论管理 </span>
                         </a>
                     </li>
-                    <!-- 以下功能尚未实现 -->
-                    <!-- <li th:class="${active}=='comments'?'active':''">
-                         <a th:class="${/admin/comment}=='comment'?'waves-effect active':'waves-effect'">
-                             <i class="fa fa-comments" aria-hidden="true"></i><span> 评论管理 </span></a>
-                     </li>-->
+                    <li >
+                        <a >
+                            <i class="fa fa-tags" aria-hidden="true" ></i><span> 分类/标签 </span></a>
+                        </a>
 
-                    <li th:class="${active}=='category'?'active':''">
-                        <a th:href="@{/admin/category}"
-                           th:class="${active}=='category'?'waves-effect active':'waves-effect'">
-                            <i class="fa fa-tags" aria-hidden="true"></i><span> 分类/标签 </span></a>
+                        <ul>
+                            <li th:class="${active}=='category'?'active':''">
+                                <a th:href="@{/admin/category}"
+                                   th:class="${active}=='category'?'waves-effect active':'waves-effect'">
+                                    <i class="fa fa-tags" aria-hidden="true"></i><span> 分类 </span></a>
+                            </li>
+
+
+                            <li th:class="${active}=='tag'?'active':''">
+                                <a th:href="@{/admin/tag}"
+                                   th:class="${active}=='tag'?'waves-effect active':'waves-effect'">
+                                    <i class="fa fa-tags" aria-hidden="true"></i><span> 标签 </span></a>
+                            </li>
+                        </ul>
                     </li>
-
-                    <li th:class="${active}=='setting'?'active':''">
+                    <li>
                         <a th:class="${active}=='setting'?'waves-effect active':'waves-effect'">
                             <i class="fa fa-gear" aria-hidden="true"></i><span> 系统设置 </span></a>
+                            <ul>
+                                <li th:class="${active}=='user'?'active':''">
+                                    <a th:href="@{/admin/userList}"
+                                       th:class="${active}=='user'?'waves-effect active':'waves-effect'">
+                                        <i class="fa fa-tags" aria-hidden="true"></i><span> 用户列表 </span></a>
+                                </li>
+                            </ul>
+                        </a>
                     </li>
                 </ul>
             </div>
